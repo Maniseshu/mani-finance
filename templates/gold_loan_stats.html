@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gold Loan Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .section-box {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light justify-content-between px-4 py-2">
+    <span class="navbar-brand mb-0 h4">Mani Finance Portal</span>
+    <div>
+        <a href="/dashboard#stats" class="btn btn-outline-secondary btn-sm">Back to Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm">Logout</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="section-box">
+        <h4 class="mb-3">Gold Loan Stats</h4>
+        <form method="POST">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">Bill Status</label>
+                    <select name="bill_status" class="form-select">
+                        <option value="All">All</option>
+                        <option value="Open">Open</option>
+                        <option value="Release">Release</option>
+                        <option value="Auctioned">Auctioned</option>
+                        <option value="In Loan">In Loan</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" name="start_date" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">End Date</label>
+                    <input type="date" name="end_date" class="form-control">
+                </div>
+                <div class="col-md-3 d-flex align-items-center gap-3">
+                    <div class="form-check">
+                        <input type="checkbox" name="one_year" value="1" class="form-check-input" id="one_year">
+                        <label class="form-check-label" for="one_year">Completed 1 year</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="interest_80" value="1" class="form-check-input" id="interest_80">
+                        <label class="form-check-label" for="interest_80">Interest ≥ 80%</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary me-2">Show Results</button>
+                <a href="{{ url_for('gold_loan_stats.gold_loan_stats') }}" class="btn btn-secondary">Clear</a>
+            </div>
+
+            {% if stats %}
+            <div class="alert alert-success d-flex flex-wrap justify-content-between gap-3 mt-4 shadow-sm p-3 rounded">
+                <div><strong>Total Open Bills:</strong> {{ stats.total_open }}</div>
+                <div><strong>Total Release Bills:</strong> {{ stats.total_release }}</div>
+                <div><strong>Total Auctioned Bills:</strong> {{ stats.total_auctioned }}</div>
+                <div><strong>Loan Amount:</strong> ₹{{ stats.sum_loan }}</div>
+                <div><strong>Interest Till Date:</strong> ₹{{ stats.sum_interest_total }}</div>
+                <div><strong>Collected Interest:</strong> ₹{{ stats.sum_interest_collected }}</div>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+
+    {% if results %}
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>S.no</th>
+                    <th>Bill Number</th>
+                    <th>Bill Status</th>
+                    <th>Customer Name</th>
+                    <th>Customer Phone</th>
+                    <th>Ornament Name</th>
+                    <th>Pledge Date</th>
+                    <th>Loan Amount</th>
+                    <th>Interest Rate (%)</th>
+                    <th>Total Days</th>
+                    <th>Interest/Day</th>
+                    <th>Total Interest Till Date</th>
+                    <th>Collected Interest</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr>
+                    <td>{{ row.sno }}</td>
+                    <td>{{ row.bill_number }}</td>
+                    <td>{{ row.bill_status }}</td>
+                    <td>{{ row.customer_name }}</td>
+                    <td>{{ row.customer_phone }}</td>
+                    <td>{{ row.ornament_name }}</td>
+                    <td>{{ row.pledge_date }}</td>
+                    <td>{{ row.loan_amount }}</td>
+                    <td>{{ row.interest_rate }}</td>
+                    <td>{{ row.total_days }}</td>
+                    <td>{{ row.interest_per_day }}</td>
+                    <td>{{ row.total_interest }}</td>
+                    <td>{{ row.collected_interest }}</td>
+                    <td>
+                        <a href="{{ url_for('gold_loan_stats.view_pledge_details', bill_number=row.bill_number) }}" class="btn btn-sm btn-info">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

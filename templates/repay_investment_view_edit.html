@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search and Repay Investments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .readonly input,
+        .readonly select {
+            background-color: #f8f9fa;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Search and Repay Investments</h2>
+    <form method="POST">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="search_by" class="form-label">Search By:</label>
+                <select name="search_by" class="form-select" required>
+                    <option value="All">All</option>
+                    <option value="Investment Transaction ID">Investment Transaction ID</option>
+                    <option value="Date of Investment">Date of Investment</option>
+                    <option value="Loan From">Loan From</option>
+                    <option value="Investment By">Investment By</option>
+                    <option value="Investment Status">Investment Status</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="search_value" class="form-label">Search Value:</label>
+                <input type="text" name="search_value" class="form-control">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </div>
+    </form>
+
+    {% if search_results %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Status</th>
+                    <th>Loan From</th>
+                    <th>Investment By</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in search_results %}
+                <tr>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>
+                        <form method="POST" action="/repay-investment-view">
+                            <input type="hidden" name="transaction_id" value="{{ row[1] }}">
+                            <button class="btn btn-info btn-sm" type="submit">View</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% if investment %}
+    <hr>
+    <h4 class="mt-4">Investment Details - {{ investment[1] }}</h4>
+    <form method="POST" action="/repay-investment-update" id="investment-form" class="readonly">
+        <input type="hidden" name="transaction_id" value="{{ investment[1] }}">
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <label>Date of Investment:</label>
+                <input type="date" class="form-control" name="investment_date" value="{{ investment_date_formatted }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Investment Source:</label>
+                <input type="text" class="form-control" name="investment_source" value="{{ investment[3] }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Invested Amount:</label>
+                <input type="number" class="form-control" name="invested_amount" value="{{ investment[4] }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Interest Rate (%):</label>
+                <input type="number" class="form-control" name="interest_rate" value="{{ investment[5] }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Loan From:</label>
+                <input type="text" class="form-control" name="loan_from" value="{{ investment[6] }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Investment By:</label>
+                <input type="text" class="form-control" name="investment_by" value="{{ investment[7] }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Status:</label>
+                <select class="form-select" name="investment_status">
+                    <option value="Open" {% if investment[8] == 'Open' %}selected{% endif %}>Open</option>
+                    <option value="Closed" {% if investment[8] == 'Closed' %}selected{% endif %}>Closed</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Repay Date:</label>
+                <input type="date" class="form-control" name="repay_date" value="{{ investment[10] }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Repay Loan:</label>
+                <input type="number" class="form-control" step="0.01" name="repay_loan_amount" value="{{ investment[11] or 0 }}">
+            </div>
+            <div class="col-md-4 mb-2">
+                <label>Repay Interest:</label>
+                <input type="number" class="form-control" step="0.01" name="repay_interest_amount" value="{{ investment[12] or 0 }}">
+            </div>
+        </div>
+        <div class="mt-3">
+            <button type="button" class="btn btn-warning" onclick="enableEdit()">Edit</button>
+            <button class="btn btn-success" type="submit">Submit Changes</button>
+            <a href="/repay-investment" class="btn btn-secondary">Back</a>
+        </div>
+    </form>
+    {% endif %}
+</div>
+
+<script>
+function enableEdit() {
+    document.getElementById('investment-form').classList.remove('readonly');
+}
+</script>
+</body>
+</html>

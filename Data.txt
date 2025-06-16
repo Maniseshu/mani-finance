@@ -1,0 +1,61 @@
+Username: admin, Password: admin123
+
+Username: user1, Password: pass123
+
+
+Password Change:
+		🔧 Step-by-Step
+	🛠 1. Install DB Browser for SQLite
+	Download here: https://sqlitebrowser.org/dl/
+
+	Install and open it
+
+	📂 2. Open Your App Database
+	Click “Open Database”
+
+	Select finance_app.db from your project folder
+
+	🧭 3. Browse Users Table
+	Go to “Browse Data”
+
+	Table: users
+
+	You’ll see usernames like admin, user1, and their password hashes
+
+	🔐 4. Generate New Password Hash
+	Open a Python terminal or new file, and run:
+
+	python
+	Copy
+	Edit
+	from werkzeug.security import generate_password_hash
+	print(generate_password_hash("newpassword123"))
+	You’ll get an output like:
+
+	bash
+	Copy
+	Edit
+	pbkdf2:sha256:600000$Jkd7... (long hash)
+	✍️ 5. Update Password in DB
+	Go back to DB Browser:
+
+	Go to Execute SQL
+
+	Paste the query below and replace your own values:
+
+	sql
+	Copy
+	Edit
+	UPDATE users
+	SET password = 'your_generated_hash_here'
+	WHERE username = 'admin';
+	✅ Example:
+
+	sql
+	Copy
+	Edit
+	UPDATE users
+	SET password = 'pbkdf2:sha256:600000$Jkd7...'
+	WHERE username = 'admin';
+	Click “Execute SQL” → then “Write Changes”
+

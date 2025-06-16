@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overall Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body{background:#f2f5f7;font-family:'Segoe UI',sans-serif}
+        /* --- generic card look --- */
+        .dash-card{border:0;border-radius:.9rem;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+        .dash-card .card-body{padding:1.1rem 1.3rem}
+        .dash-card .display-6{font-size:1.55rem;font-weight:600;margin:0}
+        .dash-card small{opacity:.85}
+        /* accent bands */
+        .accent-gold   {background:linear-gradient(90deg,#ffcb66,#ffb300)}
+        .accent-green  {background:linear-gradient(90deg,#14c38e,#00aa55)}
+        .accent-blue   {background:linear-gradient(90deg,#85b6ff,#4a91ff)}
+        .accent-violet {background:linear-gradient(90deg,#c59dff,#a56dff)}
+        .accent-pink   {background:linear-gradient(90deg,#ffb6c1,#ff6f91)}
+        .accent-silver {background:linear-gradient(90deg,#d4d4d4,#bcbcbc)}
+        .accent-bar{height:.4rem}
+        /* responsive grid gap */
+        .g-grid{--bs-gutter-x:1.2rem;--bs-gutter-y:1.2rem}
+    </style>
+</head>
+<body>
+<div class="container py-4">
+
+    <!-- top buttons -->
+    <div class="d-flex justify-content-end gap-2 mb-3">
+        <a href="/dashboard#stats" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Dashboard</a>
+        <a href="/logout" class="btn btn-outline-danger btn-sm"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    </div>
+
+    <!-- filters -->
+    <div class="dash-card mb-4">
+        <div class="card-body">
+            <h4 class="mb-3"><i class="bi bi-speedometer2 me-1"></i> Overall Status</h4>
+            <form method="POST" class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" name="start_date" class="form-control" value="{{ start_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">End Date</label>
+                    <input type="date" name="end_date" class="form-control" value="{{ end_date }}">
+                </div>
+                <div class="col-md-6 d-flex gap-2">
+                    <button class="btn btn-primary w-100"><i class="bi bi-search"></i> Search</button>
+                    <a href="/overall-status" class="btn btn-warning w-25"><i class="bi bi-x-lg"></i> Clear</a>
+                </div>
+            </form>
+        </div>
+        <div class="accent-bar accent-blue"></div>
+    </div>
+
+    <!-- ================= Loans summary cards ================= -->
+    <div class="row g-grid">
+        <!-- Gold Loan -->
+        <div class="col-lg-6">
+            <div class="dash-card h-100">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="bi bi-award-fill text-warning"></i> Gold Loan</h5>
+                    <div class="row row-cols-2 gy-3">
+                        <div class="col">
+                            <small>Open</small>
+                            <p class="display-6">{{ gold_open }}</p>
+                        </div>
+                        <div class="col">
+                            <small>Closed</small>
+                            <p class="display-6">{{ gold_closed }}</p>
+                        </div>
+                        <div class="col">
+                            <small>Loan Amt (₹)</small>
+                            <p class="display-6">{{ "{:,.0f}".format(gold_loan_amount) }}</p>
+                        </div>
+                        <div class="col">
+                            <small>Interest (₹)</small>
+                            <p class="display-6">{{ "{:,.0f}".format(gold_interest) }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accent-bar accent-gold"></div>
+            </div>
+        </div>
+
+        <!-- Personal Loan -->
+        <div class="col-lg-6">
+            <div class="dash-card h-100">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="bi bi-person-arms-up text-success"></i> Personal Loan</h5>
+                    <div class="row row-cols-2 gy-3">
+                        <div class="col">
+                            <small>Open</small>
+                            <p class="display-6">{{ personal_open }}</p>
+                        </div>
+                        <div class="col">
+                            <small>Closed</small>
+                            <p class="display-6">{{ personal_closed }}</p>
+                        </div>
+                        <div class="col">
+                            <small>Loan Amt (₹)</small>
+                            <p class="display-6">{{ "{:,.0f}".format(personal_loan_amount) }}</p>
+                        </div>
+                        <div class="col">
+                            <small>Interest (₹)</small>
+                            <p class="display-6">{{ "{:,.0f}".format(personal_interest) }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accent-bar accent-green"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= Investments + Expenses ================= -->
+    <div class="row g-grid mt-3">
+        <!-- Investments -->
+        <div class="col-lg-8">
+            <div class="dash-card h-100">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="bi bi-piggy-bank-fill text-primary"></i> Investment</h5>
+
+                    <div class="row row-cols-3 gy-3 mb-4">
+                        <div class="col text-center">
+                            <small>Total Invested</small>
+                            <p class="display-6 text-primary">{{ "{:,.0f}".format(total_invested) }}</p>
+                        </div>
+                        <div class="col text-center">
+                            <small>Repaid Loan</small>
+                            <p class="display-6 text-primary">{{ "{:,.0f}".format(total_repay_loan) }}</p>
+                        </div>
+                        <div class="col text-center">
+                            <small>Repaid Interest</small>
+                            <p class="display-6 text-primary">{{ "{:,.0f}".format(total_repay_interest) }}</p>
+                        </div>
+                    </div>
+
+                    <h6>Partner-wise (Open)</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Investor</th>
+                                    <th class="text-end">Invested (₹)</th>
+                                    <th class="text-end">Interest (₹)</th>
+                                    <th class="text-end">Total (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in partner_data %}
+                                <tr>
+                                    <td>{{ row.investment_by }}</td>
+                                    <td class="text-end">{{ "{:,.0f}".format(row.total_invested) }}</td>
+                                    <td class="text-end">{{ "{:,.0f}".format(row.interest_till_date) }}</td>
+                                    <td class="text-end">{{ "{:,.0f}".format(row.total_value) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="accent-bar accent-blue"></div>
+            </div>
+        </div>
+
+        <!-- Expenses -->
+        <div class="col-lg-4">
+            <div class="dash-card h-100 d-flex flex-column">
+                <div class="card-body text-center">
+                    <h5 class="mb-4"><i class="bi bi-receipt text-danger"></i> Expenses</h5>
+                    <p class="display-4 text-danger mb-2">{{ "{:,.0f}".format(total_expenses) }}</p>
+                    <span class="text-muted small">₹ across selected period</span>
+                </div>
+                <div class="accent-bar accent-pink"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

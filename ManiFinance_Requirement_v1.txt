@@ -1,0 +1,624 @@
+I don't have any development expereicne and I'm looking for web application to handle my finance bussiness. In the bussiness, we handle gold loan and personal loans.
+I'm looking for web application and I would like to access the application through mobile browser and laptop browser.
+The max number of users that can access the application is 2 users. I'm looking for a budget friendly hosting. The max budget is per month as 120 rs
+Consider a developer who has 10 years of experience in building applications to develop this application.
+
+
+From the application, I'm looking for following screens. Please refer to below and will provide what fields and features I need in each screen.
+Screen 1: Login Screen
+Screen 2: Gold Loan Screen - It should be used to handle Pledge trasactions for gold loan
+Screen 3: Personal Loan Screen - It should be used for personal loan transactions 
+Screen 4: Transaction/Release Screen - It should be used to update the transactions details from the existing pledge transactions
+Screen 5: Expenses Screen - It should be used to handle the rent, power bills, salaries etc.
+Screen 6: Investment Withdrawal - It should show investment withdrawal 
+Screen 7: Investment Screen - It should be used to update the investements for the bussiness
+Screen 8: Daily Stats Screen -  It should show all the daily bussiness transactions like pledge transactions, release transactions, expenses
+Screen 9: Investment Stats Screen - It should show all the investment details
+Screen 10: Stats Gold Loan Screen - It should show all Gold Loan Stats
+Screen 11: Stats Personal Loan Screen - It should show Personal Loan stats
+Screen 12: Total Stats Screen - It should show all stats
+
+
+I'm having a Pawn Broker Shop named as Mani Finance, I want to build a application to track the transactions.
+
+Below is the requirement:
+
+Below are the inputs that I want to mainly track,
+First, In excel, Please add one column for each of the below fields 
+
+Create a Tab in excel name as Transaction List 
+	Bill Number:
+	Customer Image:
+	Date of Pledge:
+	Customer Name:
+	Customer Phone Number:
+	Ornament Description:
+	Gross Weight:
+	Net Weight:
+	Loan Amount:
+	Interest Percentage(Per Month):
+	Pledge Remarks:
+	Date of Release:
+	Collected Interest:
+	Release Remarks:
+	Bill Status: It should have mainly 4 options - Open,Released,Auction and In Loan
+	Bill Status Remarks: 
+	Pledge Updated Date:
+	Release Updated Date:
+
+Create a Tab in excel name as Expense Tracker
+
+	Expense Date:
+	Expense Name:
+	Expense Amount:
+	
+Create a Tab in excel name as Investments Tracker
+		Investment Transaction ID: 
+		Date of Investment:
+		Invested Amount:
+		Interest Rate Per Month:
+		Loan From:
+		Investment By:
+		Investment Status: 
+		Investment Remarks:
+		Repayment Date:
+		Repayment Loan Amount:
+		Repayment Interest Amount:
+	
+
+Looking for 5 screens:
+Screen 1: Pledge Screen
+Screen 2: Transaction Screen
+Screen 3: Expense Screen
+Screen 4: Investments Screen
+Screen 5: Daywise Transactions Screen
+
+
+
+Screen 1:
+	Screen 1 should named as Pledge Transactions
+	Here it is should have following fields,
+	
+	Bill Number:It should start with A-1,A-2..etc. Everytime, it should check the existing Bill number and from there it should display incremental
+	Customer Image: Browse option should have to upload from local
+	Date of Pledge: Default it should show current date
+	Customer Name:
+	Customer Phone Number:
+	Ornament Description:
+	Gross Weight:
+	Net Weight:
+	Loan Amount:
+	Interest Percentage(Per Month):
+	Pledge Remarks:
+	Pledge Updated Date:It should not be editabel. It should updated automatically the day user submit/update the transactions.
+	Bill Status: Once the user submit the pledge details, automatically, Bill Status marked as Open
+
+	Buttons:
+	Submit Button: To submit the above details. Once user click on submit, data should be saved and screen should be clear.
+	
+	Once the user submit the details, it should save the details in tab - Transaction List. Here Bill Number is the reference for tracking.
+	
+
+
+Screen 2:
+	Screen 2 should named as Transaction Screen
+	Here Screen 2 should have following options:
+	
+	Search option: Option to search the gold pledge details. Here user can search with Customer Phone Number or Bill Number: Here, user can search the Customer Phone Number or Bill Number that was submmited in Gold Loan Pledge Form and once it is searched, it should display all following pledge details. 
+	
+	Bill Number:
+	Customer Image:
+	Ornament Image:
+	Proof Image:
+	Customer Name:
+	Customer Phone:
+	Ornament Name:
+	Gross Weight (gms):
+	Net Weight (gms)
+	Loan Amount (₹)
+	Interest Rate (%)
+	Pledge Date
+	Bill Status
+
+	Along with the above details, It should show following fields to update details.
+	Date of Release:
+	Date of Auction:
+	Collected Interest:
+	Release Remarks:
+	Bill Status: By defalut It should be pulled from gold pledge transaction and also it should have 3 options in a dropdown as Release, Acutioned and In Loan 
+	Bill Status Remarks: 
+
+	
+	Buttons:
+	Search Button: This button used to search the Pledge or Phone number
+	Edit Button: All fields should comes into edit mode
+	Submit Button: To submit the changes
+	Clear Button: Clear the fields after search
+	Back to Main Menu button:
+	Logout button in top right.
+	
+	Here, Whenever user search Customer Phone Number or Bill Number, it should pull all existing details of that transaction and it should display values for below transactions.
+	Bill Number:
+	Customer Image:
+	Date of Pledge:
+	Customer Name:
+	Customer Phone Number:
+	Ornament Description:
+	Gross Weight:
+	Net Weight:
+	Loan Amount:
+	Interest Percentage(Per Month):
+	Pledge Remarks:
+	Date of Release:
+	Collected Interest:
+	Release Remarks:
+	Bill Status: It should have mainly 4 options - Open,Released,Auction and In Loan
+	Bill Status Remarks: 
+	Pledge Updated Date:
+	Release Updated Date:
+	
+	Here I'm looking for one more option to search the transactions between certain period. Here, looking for options to select Start Date and End Date with Seach option. In the search results, user would like to see the Bill Number and Customer Names. Based on user requirement, transaction will be selected and and all above fields should be displayed. 
+	
+
+
+
+Screen 3:
+	Screen 3 should named as Expense Screen
+
+	Expense Date:
+	Expense Name:
+	Expense Amount:
+
+	Buttons:
+	Submit Button: Button to submit the details. Once the user submit the button, it should clear the screen automatically to enter new Expense details.
+	
+	Above all details should be saved in Expense Tracker
+	
+	Here looking to see the list of Expenses for certain period. Looking for Option to have Start Date and End Date. Option to show results. Once the results are displayed, for the selected period, we are looking to see the total Expense Amount in bottom.
+
+Screen 4: Investments Screen
+
+	Screen 4 should named as Investments Screen
+	Investments Screen sould contain 2 sub screens,
+	
+		Sub screen 1: Investments Screen:
+		It should have following fields to submit the investment.
+		
+		Investment Transaction ID: It should be auto populated and start with ITID-0001, ITID-0002 etc. Everytime it should check the existing ID and from excel and it should incremental.
+		Date of Investment: Default to current date
+		Invested Amount:
+		Interest Rate Per Month:
+		Loan From:
+		Investment By:
+		Investment Status: Once the user submit the Investment transaction, status should automatically change to Open
+		Investment Remarks:
+		
+		
+		Sub screen 2: Search and Repay Transactions:
+		Search Option: Here I'm looking for a search option to search with drop down values as All,Investment Transaction ID, Date of Investment, Loan From, Investment By,Investment Status.
+		
+		Once the user search with dropdown values, it should display Investment details list with Investment Transaction ID and Loan From. After selecting the transaction, it should display with following fields.
+		
+		Investment Transaction ID: 
+		Date of Investment: 
+		Loan From:
+		Interest Rate Per Month:
+		Investment By:
+		Invested Amount:
+		Investment Status: Here user should have option to change the status from open to close
+		Investment Remarks:
+		
+		Along with above details, it should show following fields for repayment
+		Repayment Date:
+		Repayment Loan Amount:
+		Repayment Interest Amount:
+		
+		Submit Button: Button to submit the details.
+		Clear Button: Clear the fields after search
+		
+		
+		Above all details should be saved in Investments Tracker
+		
+Screen 5:
+
+Screen Name: Day-wise Transactions:
+
+Along with existing screens, I'm looking one more screen to see day wise Pledge Transactions(Bill Number, Loan Amount), Release Transactions(Bill Number, Loan Amount and Collected Interest), Investment Transactions(Investment By, Invested Amount, Repayment Loan Amount, Repayment Interest Amount ), Expanses Transactions(Expense Date and Expense Amount)
+
+In this screen looking of field with default date as current date and button as show transactions. Once the date selected and click on show transactions, It should display above requested data. Consider each acivity may have more than 1 transaction (say, in a day, we might have 1 or more pledge transactions, release transactions, expanse transactions and investment transactions. 
+
+Once user click on show transactions, from the listed results, I want to calculate the Opening and Closing Balance
+Here I need 2 fields to view the Opening Balance and Closing Balance
+
+Opening Balance: Total Invested Amount from Investment Transactions +  Total Loan Amount from Release Transaction + Total Collected Interest from Release Transactions + Previously Day's Closing Balance
+
+Closing Balance: Opening Balance - (Total Loan Amount from Pledge Transaction + Total Expense Amount from Expense transaction + Total Repayment Loan Amount from Investments Transactions + Repayment Interest Amount from Investments Transactions)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Pledge Transaction Screen:
+Pledge Date → Pledge Date
+Bill Number → Bill Number
+Customer Name → Customer Name
+Customer Phone Number → Customer Phone
+Ornament Name → Ornament Name
+Gross Weight → Gross Weight
+Net Weight → Net Weight
+Loan Amount → Loan Amount
+Interest Rate → Interest Rate
+Pledge Remarks → Pledge Remarks
+Customer Photo → Customer Photo
+
+2. Release Transaction Screen:
+Bill Number → Bill Number
+Release Date → Release Date
+Received Interest Amount → Received Interest
+Release Remarks → Release Remarks
+
+3. Expenses Screen:
+Expense Date → Expense Date
+Expense Name → Expense Name
+Expense Amount → Expense Amount
+
+4. Investments Screen:
+Investment Date → Investment Date
+Investment By → Investment By
+Investment Amount → Investment Amount
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+I'm having PAN Broker Shop and maintaing all my transactions in excel. In a excel, I have following colum in each of the tab. 
+I want to create a desktop app to see a dashboard to view the stats of my bussiness. 
+
+Tab Name: Pledge
+	Pledge Date
+	Bill Number
+	Bill Status
+	Customer Name
+	Customer Phone
+	Ornament Name
+	Ornament Grams
+	Loan Amount
+	Interest Rate
+	Pledge Remarks
+	Gross Weight
+	Net Weight
+	Date of Auction/Loan
+	Bill Remarks
+	Release Date
+	Received Interest
+	Release Remarks
+
+
+Tab Name: Expenses
+	Expense Date
+	Expense Name
+	Expense Amount
+
+
+Tab Name: Investments
+	Investment Transaction ID
+	Date of Investment
+	Invested Amount
+	Interest Rate Per Month
+	Loan From
+	Investment By
+	Investment Status
+	Investment Remarks
+	Repayment Date
+	Repayment Loan Amount
+	Repayment Interest Amount
+	
+	
+
+
+Looking for one dasboard to see the summary of the selected date
+Keep the screen name as Day-Wise Transactions,
+
+Pledge Transactions
+	Total Pledge Transacions count:
+	Bill Numbers with Loan Amount:
+	Total Loan Amount
+	
+Release Transactions
+	Total Release Transactions Count:
+	Bill Numbers with Loan Amounts and Received Interest
+	Total Loan Amounts and Received Interest from Release
+	
+
+Expense Transactions:
+	Total Expenses Count:
+	Expense Name with Expense Amount
+	Total Expense Amount
+
+
+Investments Transactions:
+
+	Invested Amount with Investment By and Loan From
+	Repayment Loan Amount with Investment By and Loan From
+	Repayment Interest Amount with Investment By and Loan From
+	Total Invested Amount
+	Total Repayment Loan Amount
+	Total Repayment Interest Amount
+	
+	
+
+Fields to see opening Balance and Closing Balance
+
+Opening Balance: Total Invested Amount + Total Loan Amounts from Release Transactions + Received Interest from Release + Previous day Closing Balance
+Closing Balance: Opening Balance - (Total Loan Amount from Pledge Transactions + Total Expense Amount + Total Repayment Loan Amount + Total Repayment Interest Amount)
+
+
+
+
+I'm looking for one more screen to see the Bill Details
+
+One Field for Bill Status with Dropdown  : All, Open, Released, Auction, In Loan
+Options to have Start Date and End Date.
+Looking for option to see the Bills which are completed 1 year from Pledge Date
+Looking for a Option to see the Bills which the Total Interest Till Date is meeting with 80% of pledge value
+Button to Show Results
+
+Once the user Select the Bill status dropdown and click on Show results, based on the selection, all resuls should be diplayed irrespective of date. If the use select the date, along with status dropdown, results should be displayed for that perticular period.
+
+Results should be diplayed with following fields(Keep it in table formate) and in addition to this, looking for one more option to see full details of the each Bill. For each Bill, provide option to see the full details
+
+S.no, Bill Number, Bill Status, Gross Weight, Net Weight, Pledge Date, Loan Amount, Total Months, Interest/Month, Total Interest Till Date.
+
+
+
+
+Here Total Months should calculated from Pledge Date
+Interest Per Month: Interest Per month should be calculated from Interest Rate column value from pledge tab from excel. In Interest Rate column, we are going to have 1.5 or 2 or 2.5. Here 1.5 means 1.5% per month. Consider the Loan Amount and Interest Rate then calculate the Interest/Month.
+Total Interest Till Date: It should be calculated Total Months * Interest/Month
+
+
+Looking for option to see the transactions which are completed 1 year from Pledge Date
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+In excel, Investments tab, I have following columns
+	Investment Transaction ID
+	Date of Investment
+	Invested Amount
+	Interest Rate Per Month
+	Loan From
+	Investment By
+	Investment Status
+	Investment Remarks
+	Repayment Date
+	Repayment Loan Amount
+	Repayment Interest Amount
+	Investment Withdrawal Date
+	Investment Withdrawal Amount
+	Investment Withdrawal By
+	Investment Type
+	Investment Withdrawal Remarks
+	
+	
+- For the exsisting code, I want to add one more screen to see the Investment Stats
+
+Requirement 1:
+Investment Type: It should be a dropdown and it should have 4 fields - All, Principal, Interest, Loan
+Investment Status: It should be a dropdown and it should have 3 optins All, Open and Close
+Investment Transaction ID - Field to search with Investment Transaction ID
+Investment By: It should be a dropdown and it should have 3 options All, Eswar and Sreenu
+Start Date and End Date Fields - To search the transactions between specific dates.
+
+Search Button to search based on the user selection on above search cateria.
+
+Once the use search, it should display the records with details
+	Investment Transaction ID
+	Investment Status
+	Investment Type
+	Loan From
+	Investment By
+	Date of Investment
+	Invested Amount
+	Interest Rate Per Month
+	Interest Per day: The data in Interest Rate Per Month column is in percentage(say if it is 1.5 it should be 1.5% per month. Now considering Interest Rate Per Month, here we would need per day interest amount based on the Invested Amount
+	Total Days: Days should be calculate from Date of Investment to current date
+	Interest Till Date: Here it should get multipled with Total Days * Interest Per day
+
+
+
+Requirement 2:	
+
+Once the records shown, use should have previlige to select the record and review details of the record. Once user select to view, it should display following all details.
+
+	Investment Transaction ID
+	Date of Investment
+	Invested Amount
+	Interest Rate Per Month
+	Loan From
+	Investment By
+	Investment Status
+	Investment Remarks
+	Repayment Date
+	Repayment Loan Amount
+	Repayment Interest Amount
+	Investment Withdrawal Date
+	Investment Withdrawal Amount
+	Investment Withdrawal By
+	Investment Type
+	Investment Withdrawal Remarks
+	
+	
+Requirement 3:
+
+Add clear button to clear the results
+
+Requirement 4:
+
+
+
+Once the
+
+ - Total Invested Amount Till Date
+ - Total Amount in Active State
+ - Total Amount from Loan
+ - Total Amount in Loan
+ -
+ 
+ 
+ 
+ 
+ 
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+For the above code, I want to add one more dashboard to see the overall Status.
+
+Total Active Bills: Here it should collect from Pledge Screen. It should show total bills with status as Open
+Total Amount in Rotation: It should collect from Pledge screen. It should show Total Loan Amount with Bill Status as Open
+
+Total Interest Amount for Rotation Amount: Here it should go to the Pledge screen. For Bill Status as Open and In Loan, Identify the Pledge Date, Loan Amount and Interest Rate. Follow the below steps to caluclate the interest.
+ - For each Bill, Calculate the total days from pledge date to current date
+ - Interest Rate column shows the interest rate in percentage for 1 month. Convert that to per day interest. Calculuate the Interest for Loan Amount
+ - Multiply the Total Days with Per day Interest rate.
+ 
+Now show the Total Interest Amount for Rotation Amount.
+
+Total Invested Amount: It should collect from Investments Screen. Consider the total Invested Amount with Investment Status as Open.
+Total Withdrawal Amount: It should be collected from Investment Screen. It should show total of Investment Withdrawal Amount
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Want to change Calculations for Opening Balance, Closing Balance and Previous day Closing Balance
+Note: Please study the each and everyline of below prompt
+Requirement 1:
+Opening Balance: Total Invested Amount from Investment Transactions + Previously Day's Closing Balance
+
+Closing Balance: (Opening Balance + Total Loan Amount from Release Transaction + Total Collected Interest from Release Transactions) - (Total Loan Amount from Pledge Transaction + Total Expense Amount from Expense transaction + Total Repayment Loan Amount from Investments Transactions + Repayment Interest Amount from Investments Transactions + Total Investment Withdrawal Amount from Investments Transaction)
+
+Requirement 2: 
+If no transactions happen in any perticular day, Opening Balance and closing balance should be carryforward
+
+
+For your reference added the stats from bussiness days. 
+
+Consider:
+In day one(Say:1st Jan 2024) following are the transactions:
+	Invested Amount from Investment Transactions:100000
+	Invested Amount from Investment Transactions:100000
+
+	Total Invested Amount from Investment Transactions: 200000
+
+	
+	Loan Amount from Pledge Transaction: 10000
+	Total Loan Amount from Pledge Transaction: 10000
+
+	Opening Balance: 200000
+	Closing Balance: 190000
+	
+
+In second day(Say:2nd Jan 2024) following are the transactions:
+	Expense Amount from Expense transaction - 6500
+	Total - Expense Amount from Expense transactions: 6500
+
+
+	Previous Day closing Balance: 190000
+	Opening Balance: 190000
+	Closing Balance: 183500
+	
+	
+In third day(Say:3rd Jan 2024) following are the transactions:
+
+	Loan Amount from Pledge Transaction: 90000
+	Loan Amount from Pledge Transaction: 10000
+	Total Loan Amount from Pledge Transaction: 100000
+	
+	Release Transactions
+	Loan Amount from Release Transaction: 10000
+	Collected Interest from Release Transaction: 1000
+
+	Total Loan Amount from Release Transactions: 10000
+	Total Collected Interest from Release Transactions: 1000	
+	
+	Previous Day closing Balance: 183500
+	Opening Balance: 183500
+	Closing Balance: 94500
+	
+	
+In fourth day(Say:4th Jan 2024) following are the transactions:
+
+	Invested Amount from Investment Transactions:100000
+	Invested Amount from Investment Transactions:50000
+	Total Invested Amount from Investment Transactions: 150000
+	
+	Loan Amount from Pledge Transaction: 90000
+	Total Loan Amount from Pledge Transaction:90000
+	
+	Loan Amount from Release Transaction: 10000
+	Collected Interest from Release Transaction: 1000
+
+	Total Loan Amount from Release Transactions: 10000
+	Total Collected Interest from Release Transactions: 1000
+	
+	Repayment Loan Amount from Investments Transactions: 40000
+	Total Repayment Loan Amount from Investments Transactions: 40000
+	
+	Repayment Interest Amount from Investments Transactions:1500
+	Total Repayment Interest Amount from Investments Transactions:1500
+	
+	Expense Amount from Expense transaction: 500
+	Total - Expense Amount from Expense transactions: 500
+	
+	
+	
+	Previous Day closing Balance: 94500
+	Opening Balance: 244500
+	Closing Balance: 123500
+
+	
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Based on the selected date, following things should be calculated.
+
+
+
+Opening Balance: Selected date Total Invested Amount from Investment Transactions + Previously Day's Closing Balance
+
+Closing Balance: 
+ Variable A:Current Day's Opening Balance + Selected date Total Loan Amount from Release Transaction + Selected date Total Collected Interest from Release Transactions) 
+ Variable B:Selected date Total Loan Amount from Pledge Transaction + Selected date Total Expense Amount from Expense transaction + Selected date  Total Repayment Loan Amount from Investments Transactions + Selected date Repayment Interest Amount from Investments Transactions + Selected date Total Investment Withdrawal Amount from Investments Transaction
+ 
+ Closing Balance: Varible A - Variable B
+ 
+Previous Day closing Balance: 
+
+ Variable A:Current Day's Opening Balance + Selected date Total Loan Amount from Release Transaction + Selected date Total Collected Interest from Release Transactions) 
+ Variable B:Selected date Total Loan Amount from Pledge Transaction + Selected date Total Expense Amount from Expense transaction + Selected date  Total Repayment Loan Amount from Investments Transactions + Selected date Repayment Interest Amount from Investments Transactions + Selected date Total Investment Withdrawal Amount from Investments Transaction
+ 
+	Previous Day Closing Balance = Varible A - Variable B
+
+Requirement 2: 
+If no transactions happen in any perticular day, Opening Balance and closing balance should be carryforward from previous day where we have transactions
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+I'm calculating open and closing and previous day closing balance for my gold finance bussiness
+
+
+Let say in day 1, I have invested 200000 and o had on pledge transaction with loan amount as 30000
+So here, for day 1, Opening balance is 200000, Closing Balance is 170000 and previous day closing balance is 0
+
+
+For day 2, I dont't have any transactions. So here opening balanace and closing balance should be same as previous day closing balance
+			Opening Balance: 170000
+			Closing Balance: 170000
+			Previous day Closing: 170000
+
+FOr Day 3, I have one pledge transaction with loan amount as 20000. So here, Today's opening balance is 170000, closing Balance is 150000 and previous day closing balance is 170000
+

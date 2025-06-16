@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: mani-finance
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn -b 0.0.0.0:$PORT app:app"
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1

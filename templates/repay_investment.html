@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repay Investment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .readonly input, .readonly select {
+            background-color: #f8f9fa;
+            pointer-events: none;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        .section-box {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    <script>
+        function enableEdit() {
+            document.getElementById("repay-form").classList.remove("readonly");
+        }
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light px-4 py-2 justify-content-between">
+    <span class="navbar-brand mb-0 h4">Mani Finance Portal</span>
+	<a href="/dashboard#investment" class="btn btn-outline-secondary btn-sm">Back to Dashboard</a>
+    <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+</nav>
+
+<div class="container mt-4">
+    <div class="section-box">
+        <h4 class="mb-4">Search and Repay Investments</h4>
+
+        <form method="POST">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label class="form-label">Search By:</label>
+                    <select name="search_by" class="form-select" required>
+                        <option value="All">All</option>
+                        <option value="Investment Transaction ID">Investment Transaction ID</option>
+                        <option value="Date of Investment">Date of Investment</option>
+                        <option value="Loan From">Loan From</option>
+                        <option value="Investment By">Investment By</option>
+                        <option value="Investment Status">Investment Status</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Search Value:</label>
+                    <input type="text" name="search_value" class="form-control">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </form>
+
+        {% if search_results %}
+            <h5 class="mt-4">Results:</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Status</th>
+                        <th>Loan From</th>
+                        <th>Investment By</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for row in search_results %}
+                    <tr>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[8] }}</td>
+                        <td>{{ row[6] }}</td>
+                        <td>{{ row[7] }}</td>
+                        <td>
+                            <form method="POST" action="/repay-investment-view">
+                                <input type="hidden" name="transaction_id" value="{{ row[1] }}">
+                                <button class="btn btn-info btn-sm" type="submit">View</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    {% if investment %}
+    <div class="section-box mt-5">
+        <h4 class="mb-3">Investment Details - {{ investment[1] }}</h4>
+        <form method="POST" action="/repay-investment-update" id="repay-form" class="readonly">
+            <input type="hidden" name="transaction_id" value="{{ investment[1] }}">
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Date of Investment:</label>
+                    <input type="text" name="investment_date" class="form-control" value="{{ investment[2] }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Investment Source:</label>
+                    <input type="text" name="investment_source" class="form-control" value="{{ investment[3] }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Invested Amount:</label>
+                    <input type="number" name="invested_amount" step="0.01" class="form-control" value="{{ investment[4] }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Interest Rate (%):</label>
+                    <input type="number" name="interest_rate" step="0.01" class="form-control" value="{{ investment[5] }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Loan From:</label>
+                    <input type="text" name="loan_from" class="form-control" value="{{ investment[6] }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Investment By:</label>
+                    <input type="text" name="investment_by" class="form-control" value="{{ investment[7] }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Status:</label>
+                    <select class="form-select" name="investment_status">
+                        <option value="Open" {% if investment[8] == 'Open' %}selected{% endif %}>Open</option>
+                        <option value="Closed" {% if investment[8] == 'Closed' %}selected{% endif %}>Closed</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Repay Date:</label>
+                    <input type="date" name="repay_date" class="form-control" value="{{ investment[10] or today }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Repay Loan:</label>
+                    <input type="number" step="0.01" name="repay_loan_amount" class="form-control" value="{{ investment[11] or 0 }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Repay Interest:</label>
+                    <input type="number" step="0.01" name="repay_interest_amount" class="form-control" value="{{ investment[12] or 0 }}">
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="button" class="btn btn-warning" onclick="enableEdit()">Edit</button>
+                <button class="btn btn-success" type="submit">Submit Changes</button>
+                <a href="/repay-investment" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
